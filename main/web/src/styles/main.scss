@@ -1,0 +1,64 @@
+@import "components/buttonLink";
+
+@import '_variables.scss';
+@import './foundation/scss/normalize';
+@import './foundation/scss/foundation';
+
+@import "components/notificationContainer";
+@import "components/header";
+@import "components/breadcrumbs";
+@import "components/loading";
+@import "components/carousel";
+@import "components/userRating";
+@import "components/validation";
+
+@import "views/home";
+@import "views/movie";
+@import "views/person";
+@import "views/profile";
+
+// @use './foundation/scss/normalize' as *;
+// @use './foundation/scss/foundation' as *;
+// @use 'components/buttonLink' as *;
+// @use 'components/notificationContainer' as *;
+// @use 'components/header' as *;
+// @use 'components/breadcrumbs' as *;
+// @use 'components/loading' as *;
+// @use 'components/carousel' as *;
+// @use 'components/userRating' as *;
+// @use 'components/validation' as *;
+// @use 'views/home' as *;
+// @use 'views/movie' as *;
+// @use 'views/person' as *;
+// @use 'views/profile' as *;
+
+.nt-app {
+  background-image: url("/neo4j_background3.gif");
+}
+
+.nt-box {
+  border: 1px solid lightgrey;
+  border-radius: .5rem;
+  padding: .2rem;
+  background: #FFFFFF;
+
+  &-title {
+    padding: .5rem;
+    color: saddlebrown;
+    font-size: 1.2rem;
+  }
+
+  &-row {
+    padding: .5rem;
+    margin: 0;
+  }
+}
+
+ul {
+  list-style: none;
+  li {
+    display: inline-block;
+    width: auto;
+    padding: .5rem;
+  }
+}

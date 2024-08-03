@@ -1,0 +1,27 @@
+# version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - webnet
+    volumes:
+      - ./web:/app
+
+  backend:
+    build:
+      context: ./flask-api
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    networks:
+      - webnet
+    volumes:
+      - ./flask-api:/app
+  
+networks:
+  webnet:
