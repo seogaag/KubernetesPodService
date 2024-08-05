@@ -37,7 +37,8 @@
       if (url && url.length > 1) {
         url = decodeURIComponent(url[1]);
       } else {
-        url = "http://localhost:5000/api/swagger.json";
+        url = "http://localhost:30500/api/swagger.json"; // 하드코딩된 부분이라 바꿨는데 될지 모름..
+        // url = process.env.REACT_APP_API_BASE_URL;
       }
 
       hljs.configure({

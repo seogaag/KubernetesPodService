@@ -1,10 +1,19 @@
+# ConfigMap for environment variables
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  BACKEND_URL: "http://main-back:30500/docs"
+
+---
 # Main Frontend Deployment and Service
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: main-front-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: main-front
@@ -18,9 +27,14 @@ spec:
         image: seoga9/main-front:latest
         ports:
         - containerPort: 80
+        env:
+        - name: BACKEND_URL
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: BACKEND_URL
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -32,14 +46,17 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 80
-
+  #     nodePort: 30080
+  # type: NodePort
+ 
+---
 # Main Backend Deployment and Service
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: main-back-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: main-back
@@ -52,10 +69,10 @@ spec:
       - name: main-back-container
         image: seoga9/main-back:latest
         ports:
-        - containerPort: 80
+        - containerPort: 5000
+
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -65,5 +82,7 @@ spec:
     app: main-back
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 80
+      port: 5000
+      targetPort: 5000
+  #     nodePort: 30500
+  # type: NodePort
